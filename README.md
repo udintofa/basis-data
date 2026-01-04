@@ -89,6 +89,18 @@ Menyimpan saldo milik pihak bimbel.
 
 ---
 
+## 🗺️ Entity Relationship Diagram (ERD)
+
+Berikut adalah diagram ERD yang menggambarkan struktur database dan relasi antar entitas
+pada sistem bimbingan belajar privat ini.
+
+![ERD Sistem Bimbel Privat](1.png)
+
+> Diagram dibuat menggunakan **PlantUML** dan merepresentasikan alur bisnis mulai dari
+> sesi privat, pembuatan tagihan, hingga pembagian saldo tentor dan bimbel.
+
+---
+
 ## 🧠 Catatan Desain
 - Sistem **tidak menyimpan kolom `uang_masuk`** untuk menghindari redundansi data
 - Saldo diperbarui berdasarkan transaksi pada tabel `pembagian_tagihan`
@@ -99,7 +111,7 @@ Menyimpan saldo milik pihak bimbel.
 
 ## 🛠️ Tools & Teknologi
 - Perancangan ERD: **PlantUML**
-- Target DBMS: MySQL / PostgreSQL
+- Target DBMS: MySQL
 
 ---
 

@@ -1,0 +1,84 @@
+@startuml
+entity siswa {
+  id_siswa : text <PK>
+  --
+  nama : text
+  jenjang : text
+  kelas : number
+}
+
+entity tentor {
+  id_tentor : text <PK>
+  --
+  nama : text
+  jenjang : text
+}
+
+entity program {
+  kode_program : text <PK>
+  --
+  jenjang : text
+  biaya: number
+}
+
+entity dompet {
+  id_dompet : text <PK>
+  --
+  id_tentor : text <FK>
+  --
+  saldo : number
+}
+
+entity sesi_privat {
+  id_sesi : text <PK>
+  --
+  id_siswa : text <FK>
+  id_tentor : text <FK>
+  kode_program : text <FK>
+  --
+  tanggal : datetime
+  biaya : number
+}
+
+entity tagihan {
+id_tagihan: text <PK>
+--
+id_sesi: text <FK>
+id_siswa: text <FK>
+id_dompet: text <FK>
+--
+total : number
+status : text
+tanggal_bayar : datetime
+}
+
+entity saldo_bimbel {
+  id_saldo_bimbel : text <PK>
+  --
+  saldo : number
+}
+
+entity pembagian_tagihan {
+  id_pembagian : text <PK>
+  --
+  id_tagihan : text <FK>
+  id_dompet : text <FK>
+  id_saldo_bimbel : text <FK>
+  --
+  nominal_tentor : number
+  nominal_bimbel : number
+}
+
+
+tentor ||--|| dompet : memiliki
+siswa ||--o{ tagihan : memiliki
+
+siswa ||--o{ sesi_privat : mengikuti
+tentor ||--o{ sesi_privat : mengajar
+program ||--o{ sesi_privat : digunakan
+
+sesi_privat ||--|| tagihan : menghasilkan
+tagihan ||--|| pembagian_tagihan : diproses
+dompet ||--o{ pembagian_tagihan : menerima
+saldo_bimbel ||--o{ pembagian_tagihan : menerima
+@enduml
